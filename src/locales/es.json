@@ -1,4 +1,6 @@
 {
-  "welcome": "Bienvenido",
-  "language": "Español"
+  "NB001": "Bienvenido",
+  "NB002": "Español",
+  "NB003": "Cambia de idioma con /es o /en",
+  "NB004": "Current language:"
 }

@@ -10,9 +10,9 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-4">{t('welcome')}</h1>
-        <p className="text-xl">Cambia de idioma con /es o /en</p>
-        <p className="mt-4">Current language: {t('language')}</p>
+        <h1 className="text-4xl font-bold mb-4">{t('NB001')}</h1>
+        <p className="text-xl">{t('NB003')}</p>
+        <p className="mt-4">{t('NB004')} {t('NB002')}</p>
       </div>
     </div>
   );

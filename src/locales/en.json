@@ -1,4 +1,6 @@
 {
-  "welcome": "Welcome to our website",
-  "language": "English"
+  "NB001": "Welcome",
+  "NB002": "English",
+  "NB003": "Change language to /es or /en",
+  "NB004": "Current language:"
 }
