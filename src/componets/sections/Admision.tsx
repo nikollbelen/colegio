@@ -4,6 +4,8 @@ interface TabContent {
   id: string;
   title: string;
   content: React.ReactNode;
+  isExternal?: boolean;
+  externalUrl?: string;
 }
 
 export default function Admision() {
@@ -350,68 +352,23 @@ export default function Admision() {
     {
       id: "inscripcion",
       title: "Inscripción 2026 ↗",
-      content: (
-        <div className="p-6">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            Inscripción 2026
-          </h2>
-          <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 rounded-lg mb-6">
-            <h3 className="text-xl font-bold mb-2">¡Inscríbete Ahora!</h3>
-            <p className="mb-4">
-              No pierdas la oportunidad de formar parte de nuestra institución.
-            </p>
-            <button
-              className="bg-white text-blue-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-              onClick={() =>
-                window.open("https://ejemplo.com/inscripcion", "_blank")
-              }
-            >
-              Iniciar Inscripción →
-            </button>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <h3 className="font-semibold text-lg mb-3">Fechas Importantes</h3>
-              <div className="space-y-3">
-                <div className="border-l-4 border-green-400 pl-4">
-                  <div className="font-semibold">Inscripciones</div>
-                  <div className="text-sm text-gray-600">
-                    1 Enero - 31 Marzo 2026
-                  </div>
-                </div>
-                <div className="border-l-4 border-yellow-400 pl-4">
-                  <div className="font-semibold">Examen de Admisión</div>
-                  <div className="text-sm text-gray-600">15 Abril 2026</div>
-                </div>
-                <div className="border-l-4 border-blue-400 pl-4">
-                  <div className="font-semibold">Resultados</div>
-                  <div className="text-sm text-gray-600">30 Abril 2026</div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h3 className="font-semibold text-lg mb-3">
-                Carreras Disponibles
-              </h3>
-              <div className="space-y-2">
-                <div className="bg-gray-50 p-3 rounded">
-                  Ingeniería de Sistemas
-                </div>
-                <div className="bg-gray-50 p-3 rounded">Medicina</div>
-                <div className="bg-gray-50 p-3 rounded">
-                  Administración de Empresas
-                </div>
-                <div className="bg-gray-50 p-3 rounded">Derecho</div>
-                <div className="bg-gray-50 p-3 rounded">Psicología</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ),
+      isExternal: true,
+      externalUrl: "https://cubicol.edu.pe/inscripcion-2026", // Cambia esta URL por la correcta
+      content: null, // No necesita contenido porque redirige
     },
   ];
 
   const [activeTab, setActiveTab] = useState(tabs[0].id);
+
+  const handleTabClick = (tab: TabContent) => {
+    if (tab.isExternal && tab.externalUrl) {
+      // Abrir en nueva pestaña
+      window.open(tab.externalUrl, '_blank');
+    } else {
+      // Comportamiento normal de tab
+      setActiveTab(tab.id);
+    }
+  };
 
   return (
     <div className="rounded-b-lg md:rounded-b-xl xl:rounded-b-[2rem] w-full bg-[#00509D] relative overflow-hidden">
@@ -472,12 +429,12 @@ export default function Admision() {
           {tabs.map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => handleTabClick(tab)}
               className={`px-4 py-2 font-medium text-lg transition-all duration-200 border-b-2 ${
-                activeTab === tab.id
+                activeTab === tab.id && !tab.isExternal
                   ? "text-yellow-400 border-yellow-400"
                   : "text-white border-transparent hover:text-yellow-200"
-              }`}
+              } ${tab.isExternal ? "hover:text-yellow-300" : ""}`}
             >
               {tab.title}
             </button>
@@ -491,7 +448,7 @@ export default function Admision() {
           // First three tabs have full blue background
           tabs.find((tab) => tab.id === activeTab)?.content
         ) : (
-          // Last tab has content in white card
+          // Last tab has content in white card (pero no se mostrará porque redirige)
           <div className="mx-4 pb-12">
             <div className="bg-white rounded-lg shadow-lg max-w-5xl mx-auto">
               {tabs.find((tab) => tab.id === activeTab)?.content}
