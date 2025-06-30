@@ -1,0 +1,59 @@
+"use client";
+
+import { useTranslations } from "@/locales/useTranslations";
+import { useParams } from "next/navigation";
+import Image from "next/image";
+
+export default function Banner() {
+  const params = useParams();
+  const t = useTranslations(params.lang as "es" | "en");
+
+  return (
+    <div className="rounded-b-lg md:rounded-b-xl xl:rounded-b-[2rem] relative w-[100%] h-[80vh] shrink-0 overflow-hidden flex justify-center items-center group">
+      <Image
+        src="/assets/images/banner.jpg"
+        alt="Main Banner"
+        className="w-full h-full object-cover transform scale-115 transition-transform duration-500 group-hover:scale-130"
+        width={1920}
+        height={1080}
+      />
+
+      <div className="absolute inset-0 [background:linear-gradient(180deg,rgba(194,225,255,0)_42.08%,rgba(12,57,101,0.50)_74.24%,#282828_99.97%)]"></div>
+
+      <Image
+        src="/assets/images/Vector.svg"
+        alt="Elemento de fondo de vector superior derecho"
+        className="absolute top-0 right-0 w-[184.6px] h-[160.7px] rotate-[82.613deg] shrink-0 fill-[#EB0723]"
+        width={184.6}
+        height={160.7}
+      />
+
+      <Image
+        src="/assets/images/Vector.svg"
+        alt="Elemento de fondo de vector inferior izquierdo"
+        className="absolute bottom-0 left-0 w-[184.6px] h-[160.7px] rotate-[82.613deg] shrink-0 fill-[#EB0723]"
+        width={184.6}
+        height={160.7}
+      />
+
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center p-4 z-10">
+        <div className="relative">
+          <Image
+            src="/assets/images/vector azul.svg"
+            alt="Ilustración de fondo azul"
+            className="w-[auto] h-[auto]"
+            width={184.6}
+            height={160.7}
+          />
+          <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-5xl font-bold whitespace-nowrap">
+            {t("NB007")}
+          </span>
+        </div>
+
+        <p className="text-white text-2xl ml-12 whitespace-nowrap">
+          {t("NB008")}<br />{t("NB009")}
+        </p>
+      </div>
+    </div>
+  );
+}
