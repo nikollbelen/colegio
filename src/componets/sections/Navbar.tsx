@@ -159,7 +159,7 @@ export default function Navbar() {
           </li>
           <li>
             <Link
-              href={`/${params.lang as "es" | "en"}/admission`}
+              href={`/${params.lang as "es" | "en"}/admision`}
               className="bg-[#00509D] text-white px-6 py-2 rounded-md font-medium "
             >
               {t("NB006")}
@@ -170,7 +170,7 @@ export default function Navbar() {
 
       {/* Menú móvil */}
       <div
-        className={`fixed top-0 left-0 w-full h-screen bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 w-full h-screen bg-white shadow-lg transform transition-transform duration-500 ease-in-out ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         } lg:hidden z-50`}
       >
@@ -383,7 +383,7 @@ export default function Navbar() {
               {t("NB005")}
             </Link>
             <Link
-              href="/admission"
+              href="/admision"
               className="block text-gray-700 hover:text-gray-900 py-2"
               onClick={toggleMenu}
             >

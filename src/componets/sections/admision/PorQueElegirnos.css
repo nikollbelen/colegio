@@ -1,0 +1,84 @@
+/* Estilos base para las tarjetas */
+.card-item {
+    transition: all 1s ease-in-out;
+    height: 50%;
+  }
+  
+  /* Tarjeta de columna central siempre al 100% */
+  .card-column-center .card-item {
+    height: 100%;
+  }
+  
+  /* Efecto hover para imagen */
+  .card-image {
+    transform: scale(1);
+    transition: transform 0.7s ease-out;
+  }
+  
+  .card-item:hover .card-image {
+    transform: scale(1.1);
+  }
+  
+  /* Texto descriptivo inicialmente oculto */
+  .card-description {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(8px);
+    transition: all 0.5s ease-out;
+  }
+  
+  .card-item:hover .card-description {
+    opacity: 0.9;
+    max-height: 5rem;
+    transform: translateY(0);
+  }
+  
+  /* Efectos de hover para las columnas laterales */
+  .card-column-left .card-item:hover,
+  .card-column-right .card-item:hover {
+    height: 65%;
+  }
+  
+  .card-column-left .card-item:hover ~ .card-item,
+  .card-column-right .card-item:hover ~ .card-item {
+    height: 35%;
+  }
+  
+  /* Efecto cuando se hace hover en la primera tarjeta */
+  .card-column-left .card-item:first-child:hover + .card-item,
+  .card-column-right .card-item:first-child:hover + .card-item {
+    height: 35%;
+  }
+  
+  /* Efecto cuando se hace hover en la segunda tarjeta */
+  .card-column-left .card-item:last-child:hover,
+  .card-column-right .card-item:last-child:hover {
+    height: 65%;
+  }
+  
+  .card-column-left:has(.card-item:last-child:hover) .card-item:first-child,
+  .card-column-right:has(.card-item:last-child:hover) .card-item:first-child {
+    height: 35%;
+  }
+  
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .card-item {
+      height: auto;
+      min-height: 200px;
+    }
+    
+    .card-column-center .card-item {
+      height: auto;
+      min-height: 300px;
+    }
+    
+    .card-item:hover {
+      height: auto !important;
+    }
+  }
+  
+  /* Animación suave para todos los elementos */
+  * {
+    transition: height 2s ease-in-out;
+  }

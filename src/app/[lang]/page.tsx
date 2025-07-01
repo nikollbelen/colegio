@@ -1,21 +1,25 @@
 'use client';
 
-import Banner from '@/componets/sections/Banner';
-import PorQueElegirnos from '@/componets/sections/PorQueElegirnos';
 import Navbar from '@/componets/sections/Navbar';
-import NuestroCampus from '@/componets/sections/NuestroCampus';
-import Admision from '@/componets/sections/Admision';
 import Footer from '@/componets/sections/Footer';
+import VideoPlayer from '@/componets/ui/VideoPlayer';
+import Admision2026 from '@/componets/sections/landing/Admision2026';
+import TrabajaConNosotros from '@/componets/sections/landing';
+import NuestrosColaboradores from '@/componets/sections/landing/NuestrosColaboradores';
+import Actualidad from '@/componets/sections/landing/Actualidad';
+import ProgramasEducativos from '@/componets/sections/landing/ProgramasEducativos';
 
 export default function Home() {
 
   return (
     <>
     <Navbar />
-    <Banner />
-    <PorQueElegirnos />
-    <Admision />
-    <NuestroCampus />
+    <VideoPlayer />
+    <ProgramasEducativos />
+    <Admision2026 />
+    <Actualidad />
+    <NuestrosColaboradores />
+    <TrabajaConNosotros />
     <Footer />
     </>
   );

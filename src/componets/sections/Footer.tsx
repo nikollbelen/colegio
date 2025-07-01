@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-slate-800 text-white py-12 px-6 rounded-t-lg md:rounded-t-xl xl:rounded-t-[2rem] relative overflow-hidden">
+    <footer className="bg-slate-800 text-white py-12 px-6 relative overflow-hidden lg:pt-0 lg:overflow-visible">
       <img
         src="/assets/images/Footer/ilustracion fondo.svg"
         alt="Vector decorativo superior derecho"
@@ -49,7 +49,7 @@ const Footer: React.FC = () => {
               <img 
                 src="/assets/images/Footer/mapa.png" 
                 alt="Ubicación del Colegio Sagrado Corazón"
-                className="rounded-xl shadow-2xl max-w-md w-full h-auto border-2 border-slate-600"
+                className="rounded-xl shadow-2xl max-w-md w-full h-auto border-2 border-slate-600 lg:relative lg:bottom-[3rem]"
               />
             </div>
           </div>
@@ -65,35 +65,35 @@ const Footer: React.FC = () => {
             <div className="flex space-x-4">
               <a 
                 href="#" 
-                className="text-gray-400 hover:text-white transition-colors duration-300 transform hover:scale-110"
+                className="text-gray-400 hover:text-white transition-colors duration-500 transform hover:scale-110"
                 aria-label="Facebook"
               >
                 <img 
                   src="/assets/images/Footer/facebook.svg" 
                   alt="Facebook"
-                  className="w-6 h-6"
+                  className="w-8 h-8"
                 />
               </a>
               <a 
                 href="#" 
-                className="text-gray-400 hover:text-white transition-colors duration-300 transform hover:scale-110"
+                className="text-gray-400 hover:text-white transition-colors duration-500 transform hover:scale-110"
                 aria-label="Instagram"
               >
                 <img 
                   src="/assets/images/Footer/instagram.svg" 
                   alt="Instagram"
-                  className="w-6 h-6"
+                  className="w-8 h-8"
                 />
               </a>
               <a 
                 href="#" 
-                className="text-gray-400 hover:text-white transition-colors duration-300 transform hover:scale-110"
+                className="text-gray-400 hover:text-white transition-colors duration-500 transform hover:scale-110"
                 aria-label="YouTube"
               >
                 <img 
                   src="/assets/images/Footer/youtube.svg" 
                   alt="YouTube"
-                  className="w-6 h-6"
+                  className="w-8 h-8"
                 />
               </a>
             </div>

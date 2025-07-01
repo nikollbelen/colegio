@@ -1,0 +1,13 @@
+.banner-container {
+  cursor: pointer;
+}
+
+.banner-image {
+  transform: scale(1.20);
+  transition: transform 1s ease-in-out;
+  will-change: transform;
+}
+
+.banner-container:hover .banner-image {
+  transform: scale(1.4);
+}
