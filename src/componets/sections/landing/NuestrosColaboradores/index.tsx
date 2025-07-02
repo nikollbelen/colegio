@@ -31,23 +31,27 @@ const NuestrosColaboradores = () => {
         
         {/* Título a la Izquierda */}
         <div className="text-center lg:text-left lg:w-auto flex-shrink-0">
-          <h2 className="text-5xl font-extrabold text-[#284159] leading-tight">
+          <h1 className="text-5xl text-[#284159] leading-tight">
             NUESTROS
             <br />
             COLABORADORES
-          </h2>
+          </h1>
         </div>
 
         {/* Logos a la Derecha */}
-        <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-10">
+        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-8">
           {collaborators.map((collaborator) => (
-            <img
+            <div
               key={collaborator.name}
-              src={collaborator.logo}
-              alt={`Logo de ${collaborator.name}`}
+              className="w-32 h-32 bg-white rounded-full shadow-md hover:shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl"
               title={collaborator.name}
-              className="h-18 max-w-28 w-auto object-contain transition-transform duration-500 hover:scale-110"
-            />
+            >
+              <img
+                src={collaborator.logo}
+                alt={`Logo de ${collaborator.name}`}
+                className="w-24 h-24 object-contain"
+              />
+            </div>
           ))}
         </div>
         

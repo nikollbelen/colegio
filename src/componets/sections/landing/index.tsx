@@ -27,9 +27,9 @@ const TrabajaConNosotros = () => {
 
       {/* Contenido principal */}
       <div className="relative z-10 flex flex-col items-center mt-8">
-        <h2 className="text-5xl font-bold mb-4">
+        <h1 className="text-5xl mb-4">
           TRABAJA CON NOSOTROS
-        </h2>
+        </h1>
         <p className="text-xl mb-10">
           Te invitamos a ser parte de nuestra comunidad educativa
         </p>

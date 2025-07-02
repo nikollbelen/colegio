@@ -3,6 +3,8 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const ProgramasEducativos = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   const programs = [
     {
@@ -24,6 +26,26 @@ const ProgramasEducativos = () => {
       icon: "/assets/images/programas/icon4.svg",
       title: "Orientación Familiar",
       description: "Educamos en valores y competencias para que nuestros estudiantes transformen la sociedad."
+    },
+    {
+      icon: "/assets/images/programas/icon2.svg",
+      title: "Formación Integral y en virtudes",
+      description: "Educamos en valores y competencias para que nuestros estudiantes transformen la sociedad."
+    },
+    {
+      icon: "/assets/images/programas/icon3.svg",
+      title: "Excelencia académica",
+      description: "Fomentamos el desarrollo de competencias con altos estándares de calidad educativa."
+    },
+    {
+      icon: "/assets/images/programas/icon4.svg",
+      title: "Orientación Familiar",
+      description: "Educamos en valores y competencias para que nuestros estudiantes transformen la sociedad."
+    },
+    {
+      icon: "/assets/images/programas/icon2.svg",
+      title: "Soporte Psicopedagógico y Espiritual",
+      description: "Acompañamos el desarrollo emocional, personal y espiritual de nuestros estudiantes."
     }
   ];
 
@@ -60,16 +82,45 @@ const ProgramasEducativos = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [isClient]);
 
+  // Funciones para determinar si se pueden mostrar las flechas
+  const canGoBack = currentIndex > 0;
+  const canGoForward = currentIndex + visibleCards < programs.length;
+
   const nextSlide = () => {
-    setCurrentIndex((prev) => 
-      prev + visibleCards >= programs.length ? 0 : prev + 1
-    );
+    if (canGoForward) {
+      setCurrentIndex((prev) => prev + 1);
+    }
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => 
-      prev === 0 ? Math.max(0, programs.length - visibleCards) : prev - 1
-    );
+    if (canGoBack) {
+      setCurrentIndex((prev) => prev - 1);
+    }
+  };
+
+  // Funciones para manejar gestos táctiles
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    setTouchEnd(0); // Reset touchEnd
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe && canGoForward) {
+      nextSlide();
+    }
+    if (isRightSwipe && canGoBack) {
+      prevSlide();
+    }
   };
 
   return (
@@ -77,24 +128,31 @@ const ProgramasEducativos = () => {
       <div className="max-w-[80vw] mx-auto">
         {/* Título principal */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#284159] leading-tight tracking-wide">
+          <h1 className="text-4xl md:text-5xl text-[#284159] leading-tight tracking-wide">
             VIVIENDO EN LUZ,<br />
             PREDICANDO LA VERDAD
-          </h2>
+          </h1>
         </div>
 
         {/* Contenedor de carrusel */}
         <div className="relative">
-          {/* Botón izquierdo */}
-          <button 
-            onClick={prevSlide}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 sm:-translate-x-12 z-10 bg-white rounded-full p-2 shadow-sm hover:shadow-md transition-shadow border border-gray-300"
-          >
-            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
-          </button>
+          {/* Botón izquierdo - Solo se muestra si se puede ir hacia atrás */}
+          {canGoBack && (
+            <button 
+              onClick={prevSlide}
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-8 sm:-translate-x-12 lg:-translate-x-16 z-10 bg-white rounded-full p-2 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-300 hidden sm:block"
+            >
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
+            </button>
+          )}
 
           {/* Carrusel de tarjetas */}
-          <div className="overflow-hidden">
+          <div 
+            className="overflow-hidden touch-pan-y"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             <div 
               className="flex transition-transform duration-500 ease-in-out gap-4 md:gap-6"
               style={{
@@ -132,13 +190,15 @@ const ProgramasEducativos = () => {
             </div>
           </div>
 
-          {/* Botón derecho */}
-          <button 
-            onClick={nextSlide}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 sm:translate-x-12 z-10 bg-white rounded-full p-2 shadow-sm hover:shadow-md transition-shadow border border-gray-300"
-          >
-            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
-          </button>
+          {/* Botón derecho - Solo se muestra si se puede ir hacia adelante */}
+          {canGoForward && (
+            <button 
+              onClick={nextSlide}
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-8 sm:translate-x-12 lg:translate-x-16 z-10 bg-white rounded-full p-2 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-300 hidden sm:block"
+            >
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
+            </button>
+          )}
         </div>
 
       </div>

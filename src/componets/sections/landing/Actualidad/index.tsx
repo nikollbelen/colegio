@@ -17,7 +17,7 @@ const Actualidad = () => {
       <div className="container mx-auto px-4">
         
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-[#284159] uppercase tracking-wider">
+          <h1 className="text-4xl md:text-5xl text-[#284159] uppercase tracking-wider">
             Actualidad
           </h1>
           <p className="mt-4 text-lg text-[#284159] max-w-xl mx-auto">

@@ -27,7 +27,7 @@ export default function Banner() {
       <Image
         src="/assets/images/Vector.svg"
         alt="Elemento de fondo de vector superior derecho"
-        className="absolute top-0 right-0 w-[184.6px] h-[160.7px] rotate-[82.613deg] shrink-0 fill-[#EB0723]"
+        className="absolute top-0 right-0 w-[184.6px] h-[160.7px] shrink-0 fill-[#EB0723]"
         width={184.6}
         height={160.7}
       />
@@ -35,22 +35,22 @@ export default function Banner() {
       <Image
         src="/assets/images/Vector.svg"
         alt="Elemento de fondo de vector inferior izquierdo"
-        className="absolute bottom-0 left-0 w-[184.6px] h-[160.7px] rotate-[82.613deg] shrink-0 fill-[#EB0723]"
+        className="absolute -bottom-10 left-8 w-[184.6px] h-[160.7px] rotate-[140deg] shrink-0 fill-[#EB0723]"
         width={184.6}
         height={160.7}
       />
 
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center p-4 z-10">
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center p-10 z-10">
         <div className="relative">
           <Image
             src="/assets/images/vector azul.svg"
             alt="Ilustración de fondo azul"
-            className="w-[auto] h-[auto]"
+            className="w-[auto] h-[auto] pr-8"
             width={184.6}
             height={160.7}
           />
-          <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-5xl font-bold whitespace-nowrap">
-            {t("NB007")}
+          <span className="pl-12 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-6xl whitespace-nowrap">
+            <h1>{t("NB007")}</h1>
           </span>
         </div>
 

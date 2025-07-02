@@ -82,7 +82,7 @@ const CampusCarousel: React.FC = () => {
       
       {/* Título */}
       <div className="text-center mb-8 relative z-10">
-        <h1 className="text-5xl font-bold text-gray-700 tracking-widest">
+        <h1 className="text-5xl text-[#4A5765] tracking-widest">
           NUESTRO CAMPUS
         </h1>
       </div>

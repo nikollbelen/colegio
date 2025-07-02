@@ -418,7 +418,7 @@ export default function CarruselAdmision() {
 
       {/* Header - Centrado en la parte superior */}
       <div className="text-center py-12">
-        <h1 className="text-5xl md:text-6xl font-bold text-white tracking-wide">
+        <h1 className="text-5xl md:text-6xl text-white tracking-wide">
           ADMISIÓN 2026
         </h1>
       </div>

@@ -132,9 +132,9 @@ export default function PorQueElegirnos() {
         />
         
         <div className="container mx-auto px-4 relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-[#4A5765]">
+          <h1 className="text-4xl md:text-5xl text-center mb-12 text-[#4A5765]">
             ¿POR QUÉ ELEGIRNOS?
-          </h2>
+          </h1>
 
           <div className="cards-container flex flex-col gap-8 lg:grid lg:grid-cols-3 lg:gap-8 justify-items-center max-w-[1031px] mx-auto" style={{ height: '70vh', minHeight: '600px' }}>
 
