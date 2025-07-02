@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
 
-const ProgramasEducativos = () => {
+export default function ProgramasEducativos() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
@@ -124,8 +125,8 @@ const ProgramasEducativos = () => {
   };
 
   return (
-    <div className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-[80vw] mx-auto">
+    <div className="py-20 px-4 sm:px-6 lg:px-8 overflow-y-visible">
+      <div className="max-w-[80vw] mx-auto overflow-y-visible">
         {/* Título principal */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl text-[#284159] leading-tight tracking-wide">
@@ -134,27 +135,27 @@ const ProgramasEducativos = () => {
           </h1>
         </div>
 
-        {/* Contenedor de carrusel */}
-        <div className="relative">
+        {/* Contenedor de carrusel con espacio extra arriba para el hover */}
+        <div className="relative pt-12 overflow-y-visible">
           {/* Botón izquierdo - Solo se muestra si se puede ir hacia atrás */}
           {canGoBack && (
             <button 
               onClick={prevSlide}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-8 sm:-translate-x-12 lg:-translate-x-16 z-10 bg-white rounded-full p-2 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-300 hidden sm:block"
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-8 sm:-translate-x-12 lg:-translate-x-16 z-10 bg-white rounded-full p-2 shadow-sm hover:shadow-md transition-all duration-500 border border-gray-300 hidden sm:block cursor-pointer"
             >
-              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-[#18212D]" />
             </button>
           )}
 
           {/* Carrusel de tarjetas */}
           <div 
-            className="overflow-hidden touch-pan-y"
+            className="overflow-y-visible overflow-x-clip touch-pan-y"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
             <div 
-              className="flex transition-transform duration-500 ease-in-out gap-4 md:gap-6"
+              className="flex transition-transform duration-500 ease-in-out gap-4 md:gap-6 overflow-y-visible"
               style={{
                 transform: `translateX(-${currentIndex * (100 / visibleCards)}%)`
               }}
@@ -162,27 +163,31 @@ const ProgramasEducativos = () => {
               {programs.map((program, index) => (
                 <div
                   key={index}
-                  className="bg-[#EEEBE7] p-6 md:p-8 rounded-xl flex-shrink-0"
+                  className="group bg-[#EEEBE7] p-6 md:p-8 rounded-xl flex-shrink-0 transition-colors duration-500 hover:bg-[#F7C953] overflow-y-visible relative"
                   style={{
                     width: `calc(${100 / visibleCards}% - ${visibleCards > 1 ? '1rem' : '0px'})`
                   }}
                 >
-                  {/* Icono */}
-                  <div className="flex justify-start mb-4">
-                    <img 
-                      src={program.icon} 
-                      alt={`${program.title} icon`}
-                      className="w-12 h-12"
-                    />
+                  {/* Icono con contenedor que permite el overflow */}
+                  <div className="flex justify-start mb-4 overflow-y-visible relative z-10">
+                    <div className="transition-transform duration-500 group-hover:-translate-y-14 overflow-y-visible bg-[#E1F0FF] group-hover:bg-white p-4 rounded-full">
+                      <Image 
+                        src={program.icon} 
+                        alt={`${program.title} icon`}
+                        className="w-10 h-10"
+                        width={48}
+                        height={48}
+                      />
+                    </div>
                   </div>
 
                   {/* Título */}
-                  <h3 className="text-lg font-semibold text-[#18212D] text-left mb-3 leading-tight">
+                  <h3 className="text-lg font-semibold text-[#18212D] text-left mb-3 leading-tight transition-transform duration-500 group-hover:-translate-y-14">
                     {program.title}
                   </h3>
 
                   {/* Descripción */}
-                  <p className="text-[#18212D] text-sm leading-relaxed text-left">
+                  <p className="text-[#18212D] text-sm leading-relaxed text-left transition-transform duration-500 group-hover:-translate-y-14">
                     {program.description}
                   </p>
                 </div>
@@ -194,9 +199,9 @@ const ProgramasEducativos = () => {
           {canGoForward && (
             <button 
               onClick={nextSlide}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-8 sm:translate-x-12 lg:translate-x-16 z-10 bg-white rounded-full p-2 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-300 hidden sm:block"
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-8 sm:translate-x-12 lg:translate-x-16 z-10 bg-white rounded-full p-2 shadow-sm hover:shadow-md transition-all duration-500 border border-gray-300 hidden sm:block cursor-pointer"
             >
-              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#18212D]" />
             </button>
           )}
         </div>
@@ -205,5 +210,3 @@ const ProgramasEducativos = () => {
     </div>
   );
 };
-
-export default ProgramasEducativos;

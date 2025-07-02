@@ -1,0 +1,151 @@
+/* Estilos base para las tarjetas */
+.card-item {
+  transition: all 1s ease-in-out;
+  height: 50%;
+  min-height: 180px;
+}
+
+/* Tarjeta de columna central siempre al 100% en desktop */
+@media (min-width: 1024px) {
+  .card-column-center .card-item {
+      height: 100%;
+  }
+}
+
+/* Estilos para móviles y tablets */
+@media (max-width: 1023px) {
+  .card-item {
+      height: 100% !important;
+      min-height: 200px;
+  }
+  
+  /* En móviles, mostrar siempre la descripción */
+  .card-description {
+      opacity: 0.9 !important;
+      max-height: none !important;
+      transform: translateY(0) !important;
+  }
+  
+  /* Deshabilitar efectos de hover en móviles */
+  .card-item:hover {
+      height: 100% !important;
+  }
+  
+  .card-item:hover .card-image {
+      transform: scale(1) !important;
+  }
+}
+
+/* Efecto hover para imagen - solo desktop */
+@media (min-width: 1024px) {
+  .card-image {
+      transform: scale(1);
+      transition: transform 0.7s ease-out;
+  }
+  
+  .card-item:hover .card-image {
+      transform: scale(1.1);
+  }
+}
+
+/* Texto descriptivo - comportamiento diferente según dispositivo */
+.card-description {
+  transition: all 0.5s ease-out;
+}
+
+/* Solo en desktop: ocultar inicialmente y mostrar en hover */
+@media (min-width: 1024px) {
+  .card-description {
+      opacity: 0;
+      max-height: 0;
+      transform: translateY(8px);
+  }
+  
+  .card-item:hover .card-description {
+      opacity: 0.9;
+      max-height: 5rem;
+      transform: translateY(0);
+  }
+}
+
+/* En móviles: siempre visible */
+@media (max-width: 1023px) {
+  .card-description {
+      opacity: 0.9;
+      max-height: none;
+      transform: translateY(0);
+  }
+}
+
+/* Efectos de hover para las columnas laterales - solo desktop */
+@media (min-width: 1024px) {
+  .card-column-left .card-item:hover,
+  .card-column-right .card-item:hover {
+      height: 65%;
+  }
+  
+  .card-column-left .card-item:hover ~ .card-item,
+  .card-column-right .card-item:hover ~ .card-item {
+      height: 35%;
+  }
+  
+  /* Efecto cuando se hace hover en la primera tarjeta */
+  .card-column-left .card-item:first-child:hover + .card-item,
+  .card-column-right .card-item:first-child:hover + .card-item {
+      height: 35%;
+  }
+  
+  /* Efecto cuando se hace hover en la segunda tarjeta */
+  .card-column-left .card-item:last-child:hover,
+  .card-column-right .card-item:last-child:hover {
+      height: 65%;
+  }
+  
+  .card-column-left:has(.card-item:last-child:hover) .card-item:first-child,
+  .card-column-right:has(.card-item:last-child:hover) .card-item:first-child {
+      height: 35%;
+  }
+}
+
+/* Breakpoints específicos para mejores transiciones */
+@media (max-width: 640px) {
+  .card-item {
+      min-height: 180px;
+      padding: 1rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1023px) {
+  .card-item {
+      min-height: 220px;
+      padding: 1.5rem;
+  }
+}
+
+/* Animación suave para todos los elementos - solo en desktop */
+@media (min-width: 1024px) {
+  * {
+      transition: height 2s ease-in-out;
+  }
+}
+
+/* Optimizaciones adicionales para touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .card-item {
+      height: 100% !important;
+  }
+  
+  .card-item:hover {
+      height: 100% !important;
+  }
+  
+  .card-description {
+      opacity: 0.9 !important;
+      max-height: none !important;
+      transform: translateY(0) !important;
+  }
+  
+  .card-image {
+      transform: scale(1) !important;
+  }
+}

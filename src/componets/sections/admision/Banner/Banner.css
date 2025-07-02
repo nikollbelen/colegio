@@ -8,6 +8,22 @@
   will-change: transform;
 }
 
-.banner-container:hover .banner-image {
-  transform: scale(1.4);
+/* Hover solo para dispositivos con mouse */
+@media (hover: hover) {
+  .banner-container:hover .banner-image {
+    transform: scale(1.4);
+  }
+}
+
+/* Optimizaciones para móviles */
+@media (max-width: 640px) {
+  .banner-image {
+    transform: scale(1.1);
+  }
+  
+  @media (hover: hover) {
+    .banner-container:hover .banner-image {
+      transform: scale(1.3);
+    }
+  }
 }
